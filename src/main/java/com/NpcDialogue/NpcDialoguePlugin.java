@@ -109,7 +109,7 @@ public class NpcDialoguePlugin extends Plugin
         }
 
         // This should be in WidgetInfo under DialogPlayer, but isn't currently.
-        Widget playerDialogueTextWidget = client.getWidget(WidgetID.DIALOG_PLAYER_GROUP_ID, 4);
+        Widget playerDialogueTextWidget = client.getWidget(WidgetID.DIALOG_PLAYER_GROUP_ID, 5);
 
         if (playerDialogueTextWidget != null && playerDialogueTextWidget.getText() != lastPlayerDialogueText) {
             String playerText = playerDialogueTextWidget.getText();
