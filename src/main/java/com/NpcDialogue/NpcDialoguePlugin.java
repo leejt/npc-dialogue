@@ -125,7 +125,6 @@ public class NpcDialoguePlugin extends Plugin
 			panel.appendText("* '''" + npcName + ":''' " + npcText);
 		}
 
-		// This should be in WidgetInfo under DialogPlayer, but isn't currently.
 		Widget playerDialogueTextWidget = client.getWidget(InterfaceID.ChatRight.TEXT);
 		if (playerDialogueTextWidget != null && (lastDialogueType != DialogInterfaceType.PLAYER || !playerDialogueTextWidget.getText().equals(lastSeenText)))
 		{
@@ -136,7 +135,7 @@ public class NpcDialoguePlugin extends Plugin
 			panel.appendText("* '''Player:''' " + playerText);
 		}
 
-		Widget playerDialogueOptionsWidget = client.getWidget(InterfaceID.CHATMENU, 1);
+		Widget playerDialogueOptionsWidget = client.getWidget(InterfaceID.Chatmenu.OPTIONS);
 		if (playerDialogueOptionsWidget != null && (lastDialogueType != DialogInterfaceType.OPTION || playerDialogueOptionsWidget.getChildren() != dialogueOptions))
 		{
 			lastDialogueType = DialogInterfaceType.OPTION;
@@ -148,7 +147,7 @@ public class NpcDialoguePlugin extends Plugin
 			}
 		}
 
-		Widget msgTextWidget = client.getWidget(229, 1);
+		Widget msgTextWidget = client.getWidget(InterfaceID.Messagebox.TEXT);
 		if (msgTextWidget != null && (lastDialogueType != DialogInterfaceType.MESSAGE_BOX || !msgTextWidget.getText().equals(lastSeenText)))
 		{
 			lastDialogueType = DialogInterfaceType.MESSAGE_BOX;
@@ -169,7 +168,7 @@ public class NpcDialoguePlugin extends Plugin
 			for (Widget child : objectBoxWidget.getParent().getChildren())
 			{
 				// Object box with options
-				if (child.getId() == 12648448 && !child.getText().isEmpty() && !child.getText().equals("Click here to continue"))
+				if (child.getId() == InterfaceID.Objectbox.UNIVERSE && !child.getText().isEmpty() && !child.getText().equals("Click here to continue"))
 				{
 					String optionText = child.getText();
 					panel.appendText("* {{topt|" + optionText + "}}");
@@ -177,24 +176,24 @@ public class NpcDialoguePlugin extends Plugin
 			}
 		}
 
-		Widget doubleObjectBoxWidget = client.getWidget(11, 2);
+		Widget doubleObjectBoxWidget = client.getWidget(InterfaceID.ObjectboxDouble.TEXT);
 		if (doubleObjectBoxWidget != null && (lastDialogueType != DialogInterfaceType.DOUBLE_OBJECT_BOX || !doubleObjectBoxWidget.getText().equals(lastSeenText)))
 		{
 			lastDialogueType = DialogInterfaceType.DOUBLE_OBJECT_BOX;
 			String doubleObjectBoxText = doubleObjectBoxWidget.getText();
 			lastSeenText = doubleObjectBoxText;
-			int id1 = client.getWidget(11, 1).getItemId();
-			int id2 = client.getWidget(11, 3).getItemId();
+			int id1 = client.getWidget(InterfaceID.ObjectboxDouble.MODEL1).getItemId();
+			int id2 = client.getWidget(InterfaceID.ObjectboxDouble.MODEL2).getItemId();
 			panel.appendText("* {{tbox|pic=" + id1 + " detail.png|pic2=" + id2 + " detail.png|" + doubleObjectBoxText + "}}");
 		}
 
-		Widget spriteBoxWidget = client.getWidget(41484291);
+		Widget spriteBoxWidget = client.getWidget(InterfaceID.Graphicbox.TEXT);
 		if (spriteBoxWidget != null && (lastDialogueType != DialogInterfaceType.SPRITE_BOX || !spriteBoxWidget.getText().equals(lastSeenText)))
 		{
 			lastDialogueType = DialogInterfaceType.SPRITE_BOX;
 			String spriteBoxText = spriteBoxWidget.getText();
 			lastSeenText = spriteBoxText;
-			int spriteId = client.getWidget(41484290).getSpriteId();
+			int spriteId = client.getWidget(InterfaceID.Graphicbox.IMG).getSpriteId();
 			panel.appendText("* {{tbox|pic=" + spriteId + " icon.png|" + spriteBoxText + "}}");
 		}
 	}
