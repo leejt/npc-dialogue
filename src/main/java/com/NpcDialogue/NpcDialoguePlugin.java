@@ -150,7 +150,7 @@ public class NpcDialoguePlugin extends Plugin
 		}
 
 		Widget msgTextWidget = client.getWidget(229, 1);
-		if (msgTextWidget != null && (lastDialogueType != DialogInterfaceType.MESSAGE_BOX || !msgTextWidget.getText().equals(lastSeenText)))
+		if (msgTextWidget != null && !msgTextWidget.isHidden() && (lastDialogueType != DialogInterfaceType.MESSAGE_BOX || !msgTextWidget.getText().equals(lastSeenText)))
 		{
 			lastDialogueType = DialogInterfaceType.MESSAGE_BOX;
 			String msgText = msgTextWidget.getText();
